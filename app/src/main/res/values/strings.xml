@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">News Daily</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Label for the news preference -->
+    <string name="pref_news_label">News Category</string>
+
+    <!-- Label for general news preference -->
+    <string name="pref_news_label_general">General</string>
+    <!-- Label for tech news preference -->
+    <string name="pref_news_label_tech">Technology</string>
+    <!-- Label for sports news preference -->
+    <string name="pref_news_label_sports">Sports</string>
+    <!-- Label for entertainment news preference -->
+    <string name="pref_news_label_entertainment">Entertainment</string>
+    <!-- Label for health news preference -->
+    <string name="pref_news_label_health">Health</string>
+
+    <!-- Key name for color preference in SharedPreferences -->
+    <string name="pref_news_key" translatable="false">news</string>
+
+    <!-- Value in SharedPreferences for general news option -->
+    <string name="pref_news_general_value" translatable="false">general</string>
+
+    <!-- Value in SharedPreferences for technology news option -->
+    <string name="pref_news_tech_value" translatable="false">technology</string>
+
+    <!-- Value in SharedPreferences for sports news option -->
+    <string name="pref_news_sports_value" translatable="false">sports</string>
+
+    <!-- Value in SharedPreferences for entertainment news option -->
+    <string name="pref_news_entertainment_value" translatable="false">entertainment</string>
+
+    <!-- Value in SharedPreferences for health news option -->
+    <string name="pref_news_health_value" translatable="false">health</string>
+    <string name="category_settings">Category Settings</string>
+</resources>

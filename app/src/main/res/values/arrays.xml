@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Label ordering must match values -->
+    <array name="pref_news_option_labels">
+        <item>@string/pref_news_label_general</item>
+        <item>@string/pref_news_label_health</item>
+        <item>@string/pref_news_label_entertainment</item>
+        <item>@string/pref_news_label_sports</item>
+        <item>@string/pref_news_label_tech</item>
+    </array>
+
+    <array name="pref_news_option_values">
+        <item>@string/pref_news_general_value</item>
+        <item>@string/pref_news_health_value</item>
+        <item>@string/pref_news_entertainment_value</item>
+        <item>@string/pref_news_sports_value</item>
+        <item>@string/pref_news_tech_value</item>
+    </array>
+</resources>
