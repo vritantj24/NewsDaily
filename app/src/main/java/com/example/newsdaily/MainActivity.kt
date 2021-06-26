@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity(),NewsItemClicked, SharedPreferences.OnSh
         if (key==getString(R.string.pref_news_key))
         {
             loadCategoryFromPreferences(sharedPreferences)
+            MySingleton.getInstance(this).fetchData(mAdapter,this,progressBar,category)
         }
     }
 
@@ -97,11 +98,6 @@ class MainActivity : AppCompatActivity(),NewsItemClicked, SharedPreferences.OnSh
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        MySingleton.getInstance(this).fetchData(mAdapter,this,progressBar,category)
     }
 
 }
