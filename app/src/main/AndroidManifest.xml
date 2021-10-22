@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.example.newsdaily.MainActivity"
             android:launchMode="singleTop"
-            android:exported="false"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
