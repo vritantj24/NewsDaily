@@ -8,9 +8,16 @@
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26481481481481484" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_settings.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/business_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/entertainment_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/general_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/heading.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/health_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/item_news.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/mylayout.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/science_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/sports_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/technology_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/menu/news_menu.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/xml/pref_news.xml" value="0.12360688956433637" />
       </map>
