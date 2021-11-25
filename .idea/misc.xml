@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-anydpi/ic_action_settings.xml" value="0.25092592592592594" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-anydpi/ic_launcher.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-mdpi/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26481481481481484" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/blur.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/custom_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/error.xml" value="0.264" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_settings.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/business_fragment.xml" value="0.25416666666666665" />
@@ -13,12 +19,15 @@
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/general_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/heading.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/health_fragment.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/item_news.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/item_news.xml" value="0.264" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/mylayout.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/science_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/sports_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/technology_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/menu/news_menu.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/mipmap-mdpi/ic_launcher.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/xml/pref_news.xml" value="0.12360688956433637" />
       </map>
     </option>

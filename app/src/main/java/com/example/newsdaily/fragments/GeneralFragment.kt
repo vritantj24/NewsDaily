@@ -1,23 +1,24 @@
 package com.example.newsdaily.fragments
 
 import android.net.Uri
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.newsdaily.News
 import com.example.newsdaily.NewsItemClicked
 import com.example.newsdaily.NewsListAdapter
-import com.example.newsdaily.viewModels.GeneralViewModel
 import com.example.newsdaily.R
 import com.example.newsdaily.databinding.GeneralFragmentBinding
+import com.example.newsdaily.viewModels.GeneralViewModel
 
 class GeneralFragment : Fragment(), NewsItemClicked {
 
@@ -41,28 +42,36 @@ class GeneralFragment : Fragment(), NewsItemClicked {
     {
         binding = DataBindingUtil.inflate(inflater,R.layout.general_fragment,container,false)
 
-        binding.generalRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.generalRecyclerView.addItemDecoration(
-            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        )
-
 
         viewModel = ViewModelProvider(this)[GeneralViewModel::class.java]
 
+        getArticles()
+
+        binding.generalRefreshLayout.setOnRefreshListener {
+
+            getArticles()
+
+            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                Toast.makeText(context,"Refreshed", Toast.LENGTH_LONG).show()
+                binding.generalRefreshLayout.isRefreshing = false
+            }, 1532)
+
+        }
+
+        return binding.root
+    }
+
+    private fun getArticles()
+    {
         viewModel.getData(context,binding.generalProgressBar)
             ?.observe(viewLifecycleOwner,
                 { articles ->
                     Log.d("size of the list : ", articles!!.size.toString())
-                    if (articles.isNotEmpty())
-                    {
-                        binding.generalProgressBar.visibility=View.GONE
-                    }
+
                     adapter = NewsListAdapter(this, articles as ArrayList<News>)
-                    binding.generalRecyclerView.adapter = adapter
-
+                    binding.generalViewPager.adapter = adapter
+                    adapter.notifyDataSetChanged()
                 })
-
-        return binding.root
     }
 
     override fun onItemClicked(item: News) {

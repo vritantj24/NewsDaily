@@ -40,4 +40,6 @@
     <!-- Business News Category API parameter -->
     <string name="category_business" translatable="false">business</string>
 
+    <string name="full_article_button">FULL ARTICLE</string>
+
 </resources>

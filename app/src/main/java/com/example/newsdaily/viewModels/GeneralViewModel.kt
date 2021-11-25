@@ -31,6 +31,7 @@ class GeneralViewModel : ViewModel() {
     private lateinit var author : String
     private lateinit var articleUrl : String
     private lateinit var imageUrl : String
+    private lateinit var content : String
 
     fun getData(context: Context?, progressBar: ProgressBar): LiveData<List<News>>? {
         if (newsList == null) {
@@ -48,7 +49,7 @@ class GeneralViewModel : ViewModel() {
                           news_category : String)
     {
         mQueue = MySingleton.getInstance(context).getRequestQueue()
-        //progressBar.visibility= View.VISIBLE
+
 
         val url:String = headlineUrl
 
@@ -70,22 +71,37 @@ class GeneralViewModel : ViewModel() {
             ur,
             null,
             {
+
                 val newsJsonArray = it.getJSONArray("articles")
 
                 for(i in 0 until newsJsonArray.length()) {
+
+
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
                     title = newsJsonObject.getString("title")
                     val sourceJSONObject = newsJsonObject.getJSONObject("source")
                     author = sourceJSONObject.getString("name")
                     articleUrl = newsJsonObject.getString("url")
                     imageUrl = newsJsonObject.getString("urlToImage")
+                    val contentString = newsJsonObject.getString("content")
+                    if(contentString!="null")
+                    {
+                        content = contentString.dropLast(15)
+                        content = "$content...................."
+                    }
+                    else
+                    {
+                        content = "No details found. Please head over to read the full article."
+                    }
 
-                    val news = News(title, author,articleUrl, imageUrl)
+                    val news = News(title, author, articleUrl, imageUrl,content)
 
                     articleList.add(news)
+
                 }
 
                 newsList?.value = articleList
+                progressBar.visibility=View.GONE
             },
             {
                 progressBar.visibility= View.GONE
