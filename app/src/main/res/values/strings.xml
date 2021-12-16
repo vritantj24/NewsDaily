@@ -40,6 +40,13 @@
     <!-- Business News Category API parameter -->
     <string name="category_business" translatable="false">business</string>
 
-    <string name="full_article_button">FULL ARTICLE</string>
+    <string name="read_more_button">READ MORE</string>
+
+
+    <string name="slide1_heading">Your one stop for daily news</string>
+    <string name="slide1_content">Read the article you want instantly. Keep yourself updated with the world.</string>
+
+    <string name="slide2_heading">Browse from various categories</string>
+    <string name="slide2_content">Read news from various categories and share the ones you like</string>
 
 </resources>

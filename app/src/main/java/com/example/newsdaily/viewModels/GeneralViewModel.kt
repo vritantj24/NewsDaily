@@ -83,7 +83,7 @@ class GeneralViewModel : ViewModel() {
                     author = sourceJSONObject.getString("name")
                     articleUrl = newsJsonObject.getString("url")
                     imageUrl = newsJsonObject.getString("urlToImage")
-                    val contentString = newsJsonObject.getString("content")
+                    val contentString = newsJsonObject.getString("description")
                     if(contentString!="null")
                     {
                         content = contentString.dropLast(15)

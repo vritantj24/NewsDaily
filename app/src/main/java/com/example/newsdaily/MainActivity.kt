@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity(){
         val pagerAdapter = NewsFragmentPagerAdapter(this)
 
         viewPager.adapter = pagerAdapter
-        TabLayoutMediator(
-            tabLayout,
-            viewPager,
-        ) { tab, position ->
+        TabLayoutMediator(tabLayout, viewPager)
+        { tab, position ->
             val tabNames = listOf(getString(R.string.tab_name_general),getString(R.string.tab_name_tech),getString(R.string.tab_name_entertainment),
                 getString(R.string.tab_name_sports),getString(R.string.tab_name_health),getString(R.string.tab_name_business),getString(R.string.tab_name_science))
             tab.text = tabNames[position]

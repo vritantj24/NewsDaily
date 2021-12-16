@@ -7,21 +7,40 @@
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-anydpi/ic_launcher.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-mdpi/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/arrow_forward_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/bck.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/blur.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/contect_bac.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/custom_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/default_dot.xml" value="0.2703125" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/error.xml" value="0.264" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26481481481481484" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_outline_send_24.xml" value="0.25277777777777777" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_vectorshare.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/selected_dot.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/splash_bckground.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/splash_logo.xml" value="0.2388888888888889" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/splashimg.xml" value="0.24259259259259258" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/tab_selector.xml" value="0.2703125" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_category_article.xml" value="0.22056159420289856" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_intro.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_settings.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/article_activity.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/business_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/entertainment_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/fragment_slider1.xml" value="0.2477355072463768" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/general_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/heading.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/health_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/item_news.xml" value="0.264" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/main_fragment.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/mylayout.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/science_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/slider_1.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/slider_2.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/sports_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/technology_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/menu/news_menu.xml" value="0.2222222222222222" />
