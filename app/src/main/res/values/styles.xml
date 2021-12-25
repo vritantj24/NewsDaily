@@ -27,4 +27,10 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="nav_item">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.newsdaily.viewModels
+package com.example.newsdaily
 
 import android.content.Context
 import android.net.Uri
@@ -10,12 +10,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.newsdaily.MySingleton
-import com.example.newsdaily.News
-import com.example.newsdaily.R
 import java.util.ArrayList
 
-class HealthViewModel : ViewModel() {
+class ArticleViewModel : ViewModel() {
 
     private var newsList: MutableLiveData<List<News>>? = null
     private var mQueue: RequestQueue? = null
@@ -32,14 +29,15 @@ class HealthViewModel : ViewModel() {
     private lateinit var articleUrl : String
     private lateinit var imageUrl : String
     private lateinit var content : String
+    private lateinit var newsAgency : String
 
-    fun getData(context: Context?, progressBar: ProgressBar): LiveData<List<News>>? {
+    fun getData(context: Context?, progressBar: ProgressBar,category : String): LiveData<List<News>>? {
         if (newsList == null) {
             newsList = MutableLiveData<List<News>>()
 
             if (context != null) {
 
-                fetchData(context,progressBar,context.getString(R.string.category_health))
+                fetchData(context,progressBar,category)
             }
         }
         return newsList
@@ -77,7 +75,8 @@ class HealthViewModel : ViewModel() {
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
                     title = newsJsonObject.getString("title")
                     val sourceJSONObject = newsJsonObject.getJSONObject("source")
-                    author = sourceJSONObject.getString("name")
+                    newsAgency = sourceJSONObject.getString("name")
+                    author = newsJsonObject.getString("author")
                     articleUrl = newsJsonObject.getString("url")
                     imageUrl = newsJsonObject.getString("urlToImage")
                     val contentString = newsJsonObject.getString("content")
@@ -90,14 +89,19 @@ class HealthViewModel : ViewModel() {
                     {
                         content = "No details found. Please head over to read the full article."
                     }
+                    if(author=="null")
+                    {
+                        author="Unknown"
+                    }
 
-                    val news = News(title, author, articleUrl, imageUrl,content)
+                    val news = News(title, author,newsAgency, articleUrl, imageUrl,content)
+
 
                     articleList.add(news)
                 }
 
                 newsList?.value = articleList
-                progressBar.visibility=View.GONE
+                progressBar.visibility= View.GONE
             },
             {
                 progressBar.visibility= View.GONE

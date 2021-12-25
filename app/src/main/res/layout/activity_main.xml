@@ -1,36 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/list"
-    android:background="@drawable/blur">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabContentStart="32dp"
-        app:tabPaddingStart="16dp"
-        app:tabPaddingEnd="16dp"
-        app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorFullWidth="false"
-        app:tabIndicatorColor="@android:color/black"
-        app:tabMode="scrollable"
-        app:tabRippleColor="@android:color/black"
-        app:tabTextAppearance="?attr/textAppearanceSubtitle1"
-        app:tabTextColor="@android:color/black"
-        app:tabGravity="start"/>
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/slide_bck">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/explore_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:text="@string/main_activity_heading"
+                    android:fontFamily="@font/roboto_black"
+                    android:textColor="#0D253C"
+                    android:textSize="24sp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="25dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/slide_bck"
+                    android:id="@+id/category_cards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/explore_tv"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="45dp">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:background="@color/slide_bck"
+                    android:id="@+id/latest_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latest_news"
+                    android:fontFamily="@font/roboto_black"
+                    android:layout_marginStart="40dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/category_cards"
+                    android:layout_marginTop="30dp"
+                    android:textSize="20sp"
+                    android:textColor="#0D253C"/>
+
+                <ProgressBar
+                    android:background="@color/slide_bck"
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/general_news"
+                    app:layout_constraintLeft_toLeftOf="@id/general_news"
+                    app:layout_constraintRight_toRightOf="@id/general_news" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/slide_bck"
+                    android:id="@+id/general_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/latest_news"
+                    android:layout_marginTop="35dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_menu"
+            app:headerLayout="@layout/nav_header"
+            android:hapticFeedbackEnabled="true"
+            android:fitsSystemWindows="true"
+            app:itemTextAppearance="@style/nav_item"
+            app:itemIconPadding="16dp"
+            app:itemIconSize="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_developer_message"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/dark_blue"/>
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

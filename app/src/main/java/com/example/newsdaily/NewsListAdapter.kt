@@ -14,17 +14,23 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsListAdapter(listen: NewsItemClicked, item: ArrayList<News>) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsListAdapter(listen: NewsItemClicked, item: ArrayList<News>,share : NewsItemShareClicked) : RecyclerView.Adapter<NewsViewHolder>() {
 
     private val items: ArrayList<News> = item
     private val listener : NewsItemClicked = listen
+    private val shareListener : NewsItemShareClicked = share
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
 
         val viewHolder = NewsViewHolder(view)
+
         view.full_article_button.setOnClickListener{
             listener.onItemClicked(items[viewHolder.absoluteAdapterPosition])
+        }
+
+        view.share_button.setOnClickListener {
+            shareListener.onItemShareClicked(items[viewHolder.absoluteAdapterPosition])
         }
 
         return viewHolder
@@ -38,7 +44,9 @@ class NewsListAdapter(listen: NewsItemClicked, item: ArrayList<News>) : Recycler
         val currentItem = items[position]
         holder.titleView.text = currentItem.title
         holder.author.text = currentItem.author
+        holder.agency.text = currentItem.newsAgency
         holder.content.text=currentItem.content
+
 
         Glide.with(holder.itemView.context)
             .asBitmap()
@@ -54,10 +62,13 @@ class NewsListAdapter(listen: NewsItemClicked, item: ArrayList<News>) : Recycler
                     holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.error))
                 }
 
+                @SuppressLint("UseCompatLoadingForDrawables")
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    TODO("Not yet implemented")
+                    holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.error))
                 }
             })
+
+
     }
 
     /*fun updateNews(updatedNews: ArrayList<News>) {
@@ -73,9 +84,14 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val titleView: TextView = itemView.findViewById(R.id.title)
     val image: ImageView = itemView.findViewById(R.id.image)
     val author: TextView = itemView.findViewById(R.id.author)
+    val agency : TextView = itemView.findViewById(R.id.news_agency)
     val content : TextView = itemView.findViewById(R.id.content)
 }
 
 interface NewsItemClicked {
     fun onItemClicked(item: News)
+}
+
+interface NewsItemShareClicked {
+    fun onItemShareClicked(item: News)
 }
