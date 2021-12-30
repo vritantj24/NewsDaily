@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
 
-class SliderAdapter(var context: Context, var layout: ArrayList<Int>) : PagerAdapter() {
+class SliderAdapter(var context: Context, private var layout: ArrayList<Int>) : PagerAdapter() {
 
     private lateinit var inflater : LayoutInflater
 

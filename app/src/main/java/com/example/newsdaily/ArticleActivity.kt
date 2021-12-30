@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsdaily.databinding.ActivityArticleBinding
 
 class ArticleActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicked {
@@ -24,7 +22,7 @@ class ArticleActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicked
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_article)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_article)
         supportActionBar?.displayOptions= androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.heading)
 
@@ -32,12 +30,11 @@ class ArticleActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicked
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_new_24)
 
-        binding.articleRv.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL,false)
-        binding.articleRv.addItemDecoration(
+        //binding.articleRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        /*binding.articleRv.addItemDecoration(
             DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL)
-        )
+        )*/
 
         val cat  = intent.getStringExtra("category")?.lowercase()
         if (cat != null) {
@@ -67,7 +64,6 @@ class ArticleActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicked
 
             adapter = NewsListAdapter(this, articles as ArrayList<News>,this)
             binding.articleRv.adapter=adapter
-            //binding.general_news.adapter=newsAdapter
             adapter.notifyDataSetChanged()
         })
     }

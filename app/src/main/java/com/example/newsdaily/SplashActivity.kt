@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private val splashTimeout : Long = 3000
+    private val splashTimeout : Long = 1857
     private lateinit var introManager: IntroManager
 
     override fun onCreate(savedInstanceState: Bundle?) {

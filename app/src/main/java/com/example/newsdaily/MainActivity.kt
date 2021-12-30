@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsdaily.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
@@ -32,12 +31,12 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportActionBar?.displayOptions= androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.heading)
 
-        binding.generalNews.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        binding.generalNews.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
+        //binding.generalNews.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        //binding.generalNews.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         binding.categoryCards.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
         drawerLayout=findViewById(R.id.drawer_layout)
@@ -72,11 +71,11 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
         categoryList = ArrayList()
         categoryList.add(Category(getString(R.string.name_tech),R.drawable.technology))
-        categoryList.add(Category(getString(R.string.name_business),R.drawable.business))
-        categoryList.add(Category(getString(R.string.name_health),R.drawable.health))
-        categoryList.add(Category(getString(R.string.name_entertainment),R.drawable.entertainment))
-        categoryList.add(Category(getString(R.string.name_sports),R.drawable.sports))
-        categoryList.add(Category(getString(R.string.name_science),R.drawable.science))
+        categoryList.add(Category(getString(R.string.name_business),R.drawable.business2))
+        categoryList.add(Category(getString(R.string.name_health),R.drawable.health2))
+        categoryList.add(Category(getString(R.string.name_entertainment),R.drawable.entertainment2))
+        categoryList.add(Category(getString(R.string.name_sports),R.drawable.sports2))
+        categoryList.add(Category(getString(R.string.name_science),R.drawable.science2))
 
         categoryAdapter = NewsCategoryAdapter(this,categoryList)
         binding.categoryCards.adapter=categoryAdapter
@@ -95,7 +94,6 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
             newsAdapter = NewsListAdapter(this, articles as ArrayList<News>,this)
             binding.generalNews.adapter=newsAdapter
-            //binding.general_news.adapter=newsAdapter
             newsAdapter.notifyDataSetChanged()
         })
     }

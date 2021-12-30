@@ -59,12 +59,12 @@ class NewsListAdapter(listen: NewsItemClicked, item: ArrayList<News>,share : New
                 @SuppressLint("UseCompatLoadingForDrawables")
                 override fun onLoadFailed(errorDrawable: Drawable?) {
                     super.onLoadFailed(errorDrawable)
-                    holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.error))
+                    holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.news_error_image))
                 }
 
                 @SuppressLint("UseCompatLoadingForDrawables")
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.error))
+                    holder.image.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.news_error_image))
                 }
             })
 

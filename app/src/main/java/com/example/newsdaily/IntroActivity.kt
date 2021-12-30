@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 
-
 class IntroActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager

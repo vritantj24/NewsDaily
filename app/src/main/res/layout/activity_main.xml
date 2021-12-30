@@ -60,6 +60,16 @@
                     android:textSize="20sp"
                     android:textColor="#0D253C"/>
 
+                <ImageView
+                    android:id="@+id/side_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/latest_news"
+                    app:layout_constraintTop_toBottomOf="@id/category_cards"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/ic_baseline_double_arrow_24"
+                    android:layout_marginStart="170dp"/>
+
                 <ProgressBar
                     android:background="@color/slide_bck"
                     android:id="@+id/progress"
@@ -69,13 +79,13 @@
                     app:layout_constraintLeft_toLeftOf="@id/general_news"
                     app:layout_constraintRight_toRightOf="@id/general_news" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.viewpager2.widget.ViewPager2
                     android:background="@color/slide_bck"
                     android:id="@+id/general_news"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:layout_constraintTop_toBottomOf="@id/latest_news"
-                    android:layout_marginTop="35dp" />
+                    android:layout_marginTop="35dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,16 +104,11 @@
             app:itemIconPadding="16dp"
             app:itemIconSize="30dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/nav_developer_message"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:layout_marginBottom="24dp"
-                android:textSize="20sp"
-                android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/dark_blue"/>
+            <ImageView
+                android:layout_width="380dp"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/logo" />
 
         </com.google.android.material.navigation.NavigationView>
 

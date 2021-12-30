@@ -10,14 +10,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
-import java.util.ArrayList
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.MutableMap
+import kotlin.collections.set
 
 class ArticleViewModel : ViewModel() {
 
     private var newsList: MutableLiveData<List<News>>? = null
     private var mQueue: RequestQueue? = null
     private val articleList = ArrayList<News>()
-    private val key = "a7ca283637ad4f0fb7c6218fa00fb292"
+    private var key = "a7ca283637ad4f0fb7c6218fa00fb292"
     private val apiKeyTag = "apiKey"
     private val categoryTag = "category"
     private val headlineUrl = "https://newsapi.org/v2/top-headlines?country=in"
@@ -31,12 +35,12 @@ class ArticleViewModel : ViewModel() {
     private lateinit var content : String
     private lateinit var newsAgency : String
 
+
     fun getData(context: Context?, progressBar: ProgressBar,category : String): LiveData<List<News>>? {
         if (newsList == null) {
             newsList = MutableLiveData<List<News>>()
 
             if (context != null) {
-
                 fetchData(context,progressBar,category)
             }
         }
@@ -69,6 +73,14 @@ class ArticleViewModel : ViewModel() {
             ur,
             null,
             {
+                val status = it.getString("status")
+
+                if(status=="error")
+                {
+                    key="752262aaa61b43bc80a60a8a6e720879"
+                    fetchData(context,progressBar, news_category)
+                }
+
                 val newsJsonArray = it.getJSONArray("articles")
 
                 for(i in 0 until newsJsonArray.length()) {
