@@ -17,6 +17,7 @@
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/divider.xml" value="0.202734375" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/error.xml" value="0.264" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.202734375" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.1840277777777778" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.18819444444444444" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.202734375" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/drawable/ic_baseline_menu_open_24.xml" value="0.202734375" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/article_activity.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/business_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/entertainment_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/fragment_slide_indicator.xml" value="0.1765710382513661" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/fragment_slider1.xml" value="0.2477355072463768" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/general_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vrita/AndroidStudioProjects/NewsDaily/app/src/main/res/layout/heading.xml" value="0.12360688956433637" />

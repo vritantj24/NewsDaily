@@ -6,6 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
@@ -16,8 +18,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsdaily.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,NewsItemShareClicked{
+class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,NewsItemShareClicked {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var newsAdapter: NewsListAdapter
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var navView : NavigationView
+    private lateinit var introManager: IntroManager
+    private lateinit var cancelButton : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +40,15 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         supportActionBar?.displayOptions= androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.heading)
 
-        //binding.generalNews.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        //binding.generalNews.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         binding.categoryCards.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
         drawerLayout=findViewById(R.id.drawer_layout)
         actionBarDrawerToggle = ActionBarDrawerToggle(this,drawerLayout,R.string.nav_open,R.string.nav_close)
+
+        cancelButton = findViewById(R.id.slide_cancel)
+
+        introManager = IntroManager(this)
+
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
@@ -80,9 +88,25 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         categoryAdapter = NewsCategoryAdapter(this,categoryList)
         binding.categoryCards.adapter=categoryAdapter
 
+        introManager = IntroManager(this)
+
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         getArticles()
+
+        if(introManager.check())
+        {
+            cancelButton.setOnClickListener {
+                slide_indicator.visibility = View.GONE
+                slide_indicator_bck.visibility = View.GONE
+            }
+            introManager.setFirst(false)
+        }
+        else
+        {
+            slide_indicator.visibility = View.GONE
+            slide_indicator_bck.visibility = View.GONE
+        }
 
     }
 
@@ -91,7 +115,6 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         viewModel.getData(this,binding.progress)?.observe(this, Observer
         {  articles ->
             Log.d("size of the list : ", articles!!.size.toString())
-
             newsAdapter = NewsListAdapter(this, articles as ArrayList<News>,this)
             binding.generalNews.adapter=newsAdapter
             newsAdapter.notifyDataSetChanged()

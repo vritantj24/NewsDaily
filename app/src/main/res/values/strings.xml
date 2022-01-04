@@ -62,4 +62,6 @@
 
     <string name="developer_email">vritantjain2001@gmail.com</string>
 
+    <string name="slide_indicator_text">Swipe right for more news</string>
+
 </resources>
