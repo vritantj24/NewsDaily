@@ -6,13 +6,14 @@
     android:background="@color/slide_bck">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/imageCardView"
+        android:id="@+id/techCardView"
         android:layout_width="200dp"
         android:layout_height="175dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="5dp"
         app:cardCornerRadius="24dp"
+        app:layout_constraintLeft_toRightOf="@id/sportsCardView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +27,7 @@
             android:src="@drawable/technology"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -36,7 +37,7 @@
         android:layout_height="175dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:cardCornerRadius="24dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +62,7 @@
         android:layout_height="175dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:cardCornerRadius="24dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -85,11 +86,12 @@
         android:layout_height="175dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="5dp"
         app:cardCornerRadius="24dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/entertainmentCardView"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sportsCardView"
+        app:layout_constraintTop_toBottomOf="@id/techCardView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:cardElevation="20dp">
 
         <ImageView

@@ -6,7 +6,7 @@
     android:background="@color/slide_bck">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/imageCardView"
+        android:id="@+id/techCardView"
         android:layout_width="0dp"
         android:layout_height="350dp"
         android:layout_marginTop="60dp"
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageCardView"
+        app:layout_constraintTop_toBottomOf="@id/techCardView"
         app:layout_constraintVertical_bias="0.16"
         android:textColor="#0D253C"
         android:fontFamily="@font/roboto_black"/>
