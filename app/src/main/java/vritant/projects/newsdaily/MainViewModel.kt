@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
 
     private var articleList = MutableLiveData<List<News>>()
+    private lateinit var connectionLiveData: ConnectionLiveData
 
     fun getData(context: Context?): LiveData<List<News>> {
 
@@ -16,6 +17,14 @@ class MainViewModel : ViewModel() {
         }
 
         return articleList
+    }
+
+    fun networkAvailable(context: Context?) : LiveData<Boolean>
+    {
+        if (context!=null)
+            connectionLiveData = ConnectionLiveData(context)
+
+        return connectionLiveData
     }
 
 }

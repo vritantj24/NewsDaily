@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
     private lateinit var workManager : WorkManager
 
-    private lateinit var connectionLiveData: ConnectionLiveData
-
     private lateinit var sharedPreferences : SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
@@ -97,11 +95,15 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
                 }
             }
         }
-
-
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_open_24)
+
+        sharedPreferences = getSharedPreferences("firstTime",Context.MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+        editor.putBoolean("isFirst",true)
+        editor.commit()
+        editor.apply()
+
 
         if (!isNetworkAvailable())
         {
@@ -113,11 +115,7 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
             getArticles()
         }
 
-        sharedPreferences = getSharedPreferences("firstTime",Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-        editor.putBoolean("isFirst",true)
-        editor.commit()
-        editor.apply()
+        observeNetworkState()
 
         introManager = IntroManager(this)
 
@@ -181,6 +179,48 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         }
     }
 
+    private fun observeNetworkState()
+    {
+        viewModel.networkAvailable(this).observe(this) { isNetworkAvailable ->
+
+            val snackBar = Snackbar.make(list, "No", Snackbar.LENGTH_INDEFINITE)
+            val view = snackBar.view
+            val params = view.layoutParams as FrameLayout.LayoutParams
+            params.gravity = Gravity.TOP
+            view.layoutParams = params
+
+            if (!isNetworkAvailable) {
+                snackBar.apply {
+                    setText("No Internet Connection")
+                    duration = Snackbar.LENGTH_INDEFINITE
+                    setTextColor(Color.WHITE)
+                    setBackgroundTint(Color.RED)
+                    show()
+                }
+
+            } else {
+                if (no_internet_iv.visibility == View.VISIBLE || progress.visibility == View.VISIBLE) {
+                    no_internet_iv.visibility = View.GONE
+                    list.visibility = View.VISIBLE
+                    getArticles()
+                }
+                if (!ifFirstTime()) {
+                    snackBar.apply {
+                        setText("Online")
+                        duration = 500
+                        setTextColor(Color.BLACK)
+                        setBackgroundTint(Color.GREEN)
+                        show()
+                    }
+                }
+                if (ifFirstTime()) {
+                    editor.putBoolean("isFirst", false)
+                    editor.commit()
+                }
+            }
+        }
+    }
+
 
     private fun getArticles()
     {
@@ -230,55 +270,4 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         startActivity(intent)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        connectionLiveData = ConnectionLiveData(this)
-        connectionLiveData.observe(this) { isNetworkAvailable ->
-            val snackBar = Snackbar.make(list,"No",Snackbar.LENGTH_INDEFINITE)
-            val view = snackBar.view
-            val params = view.layoutParams as FrameLayout.LayoutParams
-            params.gravity = Gravity.TOP
-            view.layoutParams = params
-            if (!isNetworkAvailable) {
-                snackBar.apply {
-                    setText("No Internet Connection")
-                    duration = Snackbar.LENGTH_INDEFINITE
-                    setTextColor(Color.WHITE)
-                    setBackgroundTint(Color.RED)
-                    show()
-                }
-
-            }
-            else
-            {
-                if (no_internet_iv.visibility == View.VISIBLE || progress.visibility == View.VISIBLE)
-                {
-                    no_internet_iv.visibility = View.GONE
-                    list.visibility = View.VISIBLE
-                    getArticles()
-                }
-                if (!ifFirstTime())
-                {
-                    snackBar.apply {
-                        setText("Online")
-                        duration = 500
-                        setTextColor(Color.BLACK)
-                        setBackgroundTint(Color.GREEN)
-                        show()
-                    }
-                }
-                if (ifFirstTime())
-                {
-                    editor.putBoolean("isFirst",false)
-                    editor.commit()
-                }
-            }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        connectionLiveData.removeObservers(this)
-    }
 }
