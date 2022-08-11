@@ -19,8 +19,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.activity_category.no_internet_iv
-import kotlinx.android.synthetic.main.activity_main.*
 import vritant.projects.newsdaily.databinding.ActivityCategoryBinding
 
 class CategoryActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicked {
@@ -64,13 +62,13 @@ class CategoryActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicke
             getArticles()
         }
 
-        observeNetworkState()
-
         sharedPreferences = getSharedPreferences("articleFirstTime",Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
         editor.putBoolean("isFirst",true)
         editor.commit()
         editor.apply()
+
+        observeNetworkState()
 
     }
 
@@ -99,7 +97,7 @@ class CategoryActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicke
     {
         viewModel.networkAvailable(this).observe(this) { isNetworkAvailable ->
 
-            val snackBar = Snackbar.make(list, "No", Snackbar.LENGTH_INDEFINITE)
+            val snackBar = Snackbar.make(article_rv, "No", Snackbar.LENGTH_INDEFINITE)
             val view = snackBar.view
             val params = view.layoutParams as FrameLayout.LayoutParams
             params.gravity = Gravity.TOP
@@ -115,9 +113,10 @@ class CategoryActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicke
                 }
 
             } else {
-                if (no_internet_iv.visibility == View.VISIBLE || progress.visibility == View.VISIBLE) {
+                if (no_internet_iv.visibility == View.VISIBLE || article_progress.visibility == View.VISIBLE) {
                     no_internet_iv.visibility = View.GONE
-                    list.visibility = View.VISIBLE
+                    article_rv.visibility = View.VISIBLE
+                    article_progress.visibility = View.VISIBLE
                     getArticles()
                 }
                 if (!ifFirstTime()) {

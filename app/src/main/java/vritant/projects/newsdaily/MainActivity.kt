@@ -76,10 +76,9 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         actionBarDrawerToggle.syncState()
 
         navView = findViewById(R.id.nav_view)
-
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_contact -> {
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.email_contact -> {
                     val address = arrayOf(getString(R.string.developer_email))
                     val intent = Intent(Intent.ACTION_SENDTO)
                     intent.putExtra(Intent.EXTRA_EMAIL,address)
@@ -95,6 +94,7 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
                 }
             }
         }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_open_24)
 
@@ -253,7 +253,8 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         {
             true
         } else
-        super.onOptionsItemSelected(item)
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onItemShareClicked(item: News) {

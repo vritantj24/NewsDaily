@@ -116,8 +116,7 @@
             android:hapticFeedbackEnabled="true"
             android:fitsSystemWindows="true"
             app:itemTextAppearance="@style/nav_item"
-            app:itemIconPadding="16dp"
-            app:itemIconSize="30dp">
+            app:itemIconSize="20dp">
 
             <ImageView
                 android:layout_width="380dp"
@@ -126,6 +125,7 @@
                 android:src="@drawable/logo" />
 
         </com.google.android.material.navigation.NavigationView>
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
