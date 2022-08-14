@@ -13,7 +13,7 @@ android {
         applicationId "com.projects.newsdaily"
         minSdkVersion 23
         targetSdkVersion 32
-        versionCode 2
+        versionCode 3
         versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,7 +56,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation 'androidx.browser:browser:1.4.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
