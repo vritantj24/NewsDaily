@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 
@@ -50,6 +51,7 @@ class Notifications(private val context: Context) {
             setContentIntent(contentIntent(context,article))
             setAutoCancel(true)
             setStyle(NotificationCompat.BigTextStyle().bigText(article.title))
+            setVisibility(VISIBILITY_PUBLIC)
             if(Build.VERSION.SDK_INT<Build.VERSION_CODES.O)
             {
                 priority = NotificationCompat.PRIORITY_HIGH

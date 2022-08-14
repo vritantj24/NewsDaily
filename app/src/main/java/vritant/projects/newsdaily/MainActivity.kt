@@ -140,8 +140,8 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(NewsWorker::class.java,8,TimeUnit.HOURS)
-            .setInitialDelay(4,TimeUnit.HOURS)
+        val periodicWorkRequest = PeriodicWorkRequest.Builder(NewsWorker::class.java,6,TimeUnit.HOURS)
+            .setInitialDelay(2,TimeUnit.HOURS)
             .setConstraints(constraints)
             .build()
 
