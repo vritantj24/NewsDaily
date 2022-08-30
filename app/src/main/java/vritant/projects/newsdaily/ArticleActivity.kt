@@ -5,19 +5,25 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.android.synthetic.main.activity_article.*
 
 class ArticleActivity : AppCompatActivity(), NewsItemClicked,
     NewsItemShareClicked {
 
     private lateinit var article : News
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +36,7 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_new_24)
 
-
-        val bundle = intent.getBundleExtra("article")
+        val bundle = intent?.getBundleExtra("article")
         if (bundle != null) {
             article = News(
                 bundle.getString("articleTitle").toString(),
@@ -69,16 +74,74 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
 
         content.text = article.content
 
-        val builder =  Uri.Builder()
-        builder.appendPath("https://google.com")
-            .build()
+        MobileAds.initialize(this){}
 
+        loadAd()
+
+        android.os.Handler(Looper.getMainLooper()).postDelayed({
+            showAd()
+        },4000)
+
+    }
+
+    private fun loadAd()
+    {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this, AD_UNIT_ID,adRequest,
+            object : InterstitialAdLoadCallback()
+            {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d("showAd", adError.message)
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d("showAd", "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
+    }
+
+    private fun showAd()
+    {
+        if(mInterstitialAd!=null)
+        {
+            mInterstitialAd?.fullScreenContentCallback = object :  FullScreenContentCallback()
+            {
+                override fun onAdDismissedFullScreenContent() {
+                    Log.d("showAd", "Ad was dismissed.")
+
+                    mInterstitialAd = null
+                    loadAd()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                    Log.d("showAd", "Ad failed to show.")
+
+                    mInterstitialAd = null
+                }
+
+                override fun onAdShowedFullScreenContent() {
+                    Log.d("showAd", "Ad showed fullscreen content.")
+                    mInterstitialAd = null
+                }
+            }
+
+            mInterstitialAd?.show(this)
+        }
+        else
+        {
+            Log.d("showAd", "Ad wasn't loaded")
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId==android.R.id.home)
         {
+            val intent = Intent(this,MainActivity::class.java)
             this.finish()
+            startActivity(intent)
             return true
         }
         return super.onOptionsItemSelected(item)

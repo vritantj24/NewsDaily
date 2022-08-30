@@ -25,6 +25,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5754287069220750~7606013658"/>
+
         <activity
             android:name="vritant.projects.newsdaily.ArticleActivity"
             android:exported="false"

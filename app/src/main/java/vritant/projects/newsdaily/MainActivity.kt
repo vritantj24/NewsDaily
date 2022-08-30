@@ -8,7 +8,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.util.Log.d
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -22,6 +22,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.*
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,6 +49,9 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
     private lateinit var sharedPreferences : SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+
+    private var mInterstitialAd: InterstitialAd? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,10 +128,69 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         if (introManager.check())
         {
             setupWorkManager()
-
             introManager.setFirst(false)
         }
 
+        MobileAds.initialize(this){}
+
+        loadAd()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        showAd()
+    }
+
+    private fun loadAd()
+    {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this, AD_UNIT_ID,adRequest,
+            object : InterstitialAdLoadCallback()
+        {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                d("showAd",adError.message)
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                d("showAd", "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
+    }
+
+    private fun showAd()
+    {
+        if(mInterstitialAd!=null)
+        {
+            mInterstitialAd?.fullScreenContentCallback = object :  FullScreenContentCallback()
+            {
+                override fun onAdDismissedFullScreenContent() {
+                    d("showAd", "Ad was dismissed.")
+
+                    mInterstitialAd = null
+                    loadAd()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                    d("showAd", "Ad failed to show.")
+
+                    mInterstitialAd = null
+                }
+
+                override fun onAdShowedFullScreenContent() {
+                    d("showAd", "Ad showed fullscreen content.")
+                    mInterstitialAd = null
+                }
+            }
+
+            mInterstitialAd?.show(this)
+        }
+        else
+        {
+            d("showAd","Ad wasn't loaded")
+        }
     }
 
     private fun ifFirstTime() : Boolean
@@ -151,7 +216,7 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
         workManager.getWorkInfoByIdLiveData(periodicWorkRequest.id).observeForever {
             if (it != null) {
 
-                Log.d("periodicWorkRequest", "Status changed to ${it.state}")
+                d("periodicWorkRequest", "Status changed to ${it.state}")
 
             }
         }
@@ -226,7 +291,7 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
     {
         viewModel.getData(this).observe(this, Observer
         {  articles ->
-            Log.d("size of the list : ", articles!!.size.toString())
+            d("size of the list : ", articles!!.size.toString())
             println("size of the list : ${articles.size}")
 
             if (articles.isNotEmpty()) {

@@ -1,23 +1,27 @@
 package vritant.projects.newsdaily
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
 class NotificationNewsManager( context: Context) {
 
-    private var sharedPreferences : SharedPreferences = context.getSharedPreferences("news",0)
+    private var sharedPreferences : SharedPreferences = context.getSharedPreferences("news",MODE_PRIVATE)
     private var editor: SharedPreferences.Editor = sharedPreferences.edit()
 
 
     fun setNews(article : News)
     {
-        editor.putString("title",article.title)
-        editor.putString("author",article.author)
-        editor.putString("newsAgency",article.newsAgency)
-        editor.putString("url",article.url)
-        editor.putString("imageUrl",article.imageUrl)
-        editor.putString("content",article.content)
-        editor.commit()
+        editor.apply {
+            putString("title",article.title)
+            putString("author",article.author)
+            putString("newsAgency",article.newsAgency)
+            putString("url",article.url)
+            putString("imageUrl",article.imageUrl)
+            putString("content",article.content)
+            commit()
+            apply()
+        }
     }
 
     fun getNews() : News

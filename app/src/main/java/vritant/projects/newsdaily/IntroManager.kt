@@ -1,11 +1,12 @@
 package vritant.projects.newsdaily
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
 class IntroManager( context: Context) {
 
-    private var sharedPreferences : SharedPreferences = context.getSharedPreferences("first",0)
+    private var sharedPreferences : SharedPreferences = context.getSharedPreferences("first",MODE_PRIVATE)
     private var editor: SharedPreferences.Editor = sharedPreferences.edit()
 
     fun setFirst(isFirst : Boolean)
