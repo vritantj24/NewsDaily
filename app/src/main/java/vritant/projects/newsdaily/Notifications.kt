@@ -8,7 +8,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
@@ -48,7 +47,7 @@ class Notifications(private val context: Context) {
             setContentText(article.title)
             setSmallIcon(IconCompat.createWithResource(context,R.drawable.icon_nd))
             setLargeIcon(largeIcon(context))
-            setContentIntent(contentIntent(context,article))
+            setContentIntent(contentIntent(context))
             setAutoCancel(true)
             setStyle(NotificationCompat.BigTextStyle().bigText(article.title))
             setVisibility(VISIBILITY_PUBLIC)
@@ -63,23 +62,10 @@ class Notifications(private val context: Context) {
         notificationManager.notify(newsNotificationId,builder.build())
     }
 
-    private fun contentIntent(context: Context,article : News): PendingIntent? {
+    private fun contentIntent(context: Context): PendingIntent? {
         val intent = Intent(context, ArticleActivity::class.java)
 
-        val bundle = Bundle()
-        bundle.apply{
-            putString("articleContent",article.content)
-            putString("articleTitle",article.title)
-            putString("articleAuthor",article.author)
-            putString("articleUrl",article.url)
-            putString("articleImageURL",article.imageUrl)
-            putString("articleNewsAgency",article.newsAgency)
-        }
-
-        intent.putExtra("article",bundle)
-
-
-        return PendingIntent.getActivity(context,newsPendingIntentId,intent,PendingIntent.FLAG_IMMUTABLE)
+        return PendingIntent.getActivity(context,newsPendingIntentId,intent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
     }
 

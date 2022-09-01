@@ -36,17 +36,7 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_new_24)
 
-        val bundle = intent?.getBundleExtra("article")
-        if (bundle != null) {
-            article = News(
-                bundle.getString("articleTitle").toString(),
-                bundle.getString("articleAuthor").toString(),
-                bundle.getString("articleNewsAgency").toString(),
-                bundle.getString("articleUrl").toString(),
-                bundle.getString("articleImageURL").toString(),
-                bundle.getString("articleContent").toString()
-            )
-        }
+        article = NotificationNewsManager(this).getNews()
 
         author.text =  article.author
         title_tv.text = article.title
@@ -137,7 +127,7 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==android.R.id.home)
+        if(item.itemId==android.R.id.home || item.itemId==android.R.id.accessibilitySystemActionHome)
         {
             val intent = Intent(this,MainActivity::class.java)
             this.finish()
