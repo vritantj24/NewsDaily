@@ -19,8 +19,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.android.synthetic.main.activity_article.*
 
-class ArticleActivity : AppCompatActivity(), NewsItemClicked,
-    NewsItemShareClicked {
+class ArticleActivity : AppCompatActivity(){
 
     private lateinit var article : News
     private var mInterstitialAd: InterstitialAd? = null
@@ -64,13 +63,27 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
 
         content.text = article.content
 
+        share_button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type="text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT,"Hey, Checkout this news I read from News Daily App ${article.url} ")
+            val chooser= Intent.createChooser(intent,"Share this news using...")
+            startActivity(chooser)
+        }
+
+        full_article_button.setOnClickListener {
+            val builder =  CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(this, Uri.parse(article.url))
+        }
+
         MobileAds.initialize(this){}
 
         loadAd()
 
         android.os.Handler(Looper.getMainLooper()).postDelayed({
             showAd()
-        },4000)
+        },3057)
 
     }
 
@@ -126,8 +139,15 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this,MainActivity::class.java)
+        this.finish()
+        startActivity(intent)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==android.R.id.home || item.itemId==android.R.id.accessibilitySystemActionHome)
+        if(item.itemId==android.R.id.home)
         {
             val intent = Intent(this,MainActivity::class.java)
             this.finish()
@@ -137,18 +157,8 @@ class ArticleActivity : AppCompatActivity(), NewsItemClicked,
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onItemClicked(item: News) {
-        val builder =  CustomTabsIntent.Builder()
-        val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(this, Uri.parse(item.url))
+    override fun onRestart() {
+        super.onRestart()
+        showAd()
     }
-
-    override fun onItemShareClicked(item: News) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type="text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT,"Hey, Checkout this news I read from News Daily App ${item.url} ")
-        val chooser= Intent.createChooser(intent,"Share this news using...")
-        startActivity(chooser)
-    }
-
 }
