@@ -1,12 +1,15 @@
 package vritant.projects.newsdaily
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log.d
 import android.view.Gravity
@@ -18,17 +21,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.*
-import com.google.android.gms.ads.*
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.general_news
+import kotlinx.android.synthetic.main.activity_main.list
+import kotlinx.android.synthetic.main.activity_main.no_internet_iv
+import kotlinx.android.synthetic.main.activity_main.progress
+import kotlinx.android.synthetic.main.activity_main.slide_button
 import vritant.projects.newsdaily.databinding.ActivityMainBinding
+import java.security.Permission
 import java.util.concurrent.TimeUnit
 
 
@@ -60,6 +75,13 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
         supportActionBar?.displayOptions= androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.heading)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if(checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)==PackageManager.PERMISSION_DENIED)
+            {
+                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS),100)
+            }
+        }
 
         binding.categoryCards.layoutManager =
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
@@ -211,7 +233,8 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
             .build()
 
         workManager = WorkManager.getInstance(applicationContext)
-        workManager.enqueueUniquePeriodicWork("NewsFetchWork",ExistingPeriodicWorkPolicy.REPLACE,periodicWorkRequest)
+        workManager.enqueueUniquePeriodicWork("NewsFetchWork",
+            ExistingPeriodicWorkPolicy.UPDATE,periodicWorkRequest)
 
         workManager.getWorkInfoByIdLiveData(periodicWorkRequest.id).observeForever {
             if (it != null) {
@@ -289,22 +312,25 @@ class MainActivity : AppCompatActivity(),NewsItemClicked,NewsCategoryClicked,New
 
     private fun getArticles()
     {
-        viewModel.getData(this).observe(this, Observer
-        {  articles ->
+        viewModel.getData(this).observe(this) { articles ->
             d("size of the list : ", articles!!.size.toString())
             println("size of the list : ${articles.size}")
 
             if (articles.isNotEmpty()) {
-                newsAdapter = NewsListAdapter(this, articles as ArrayList<News>,this)
-                binding.generalNews.adapter=newsAdapter
-                newsAdapter.notifyDataSetChanged()
+                newsAdapter = NewsListAdapter(this, articles as ArrayList<News>, this)
+                binding.generalNews.adapter = newsAdapter
+                newsAdapter.notifyItemRangeChanged(0, articles.size)
                 setupSlideButton()
             } else
-                Snackbar.make(drawerLayout,"Unable to fetch News at the moment",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    drawerLayout,
+                    "Unable to fetch News at the moment",
+                    Snackbar.LENGTH_LONG
+                ).show()
 
             progress.visibility = View.GONE
 
-        })
+        }
     }
 
     override fun onItemClicked(item: News) {

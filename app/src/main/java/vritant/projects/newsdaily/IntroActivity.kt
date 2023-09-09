@@ -86,10 +86,9 @@ class IntroActivity : AppCompatActivity() {
 
                 @Suppress("DEPRECATION")
                 window.decorView.apply {
-                    systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                             // Do not let system steal touches for showing the navigation bar
-                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     //Hide the nav bar and status bar
                     //View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -98,8 +97,6 @@ class IntroActivity : AppCompatActivity() {
                     //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     // make navbar translucent - do this already in hideSystemUI() so that the bar
                     // is translucent if user swipes it up
-                    @Suppress("DEPRECATION")
-                    //window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
                     supportActionBar?.hide()
                     window.statusBarColor = getColor(R.color.slide_bck)
                 }

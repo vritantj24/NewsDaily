@@ -148,7 +148,7 @@ class CategoryActivity : AppCompatActivity(),NewsItemClicked,NewsItemShareClicke
             {
                 adapter = NewsListAdapter(this, articles as ArrayList<News>, this)
                 binding.articleRv.adapter = adapter
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeChanged(0,articles.size)
             }
             else
                 Snackbar.make(article_rv,"Unable to Fetch News at the moment",Snackbar.LENGTH_LONG)
